@@ -10,16 +10,19 @@ site = raw_input("Enter page: ")
 data = urllib2.urlopen(site).read()
 
 #run the data through re/regex
-m = re.findall('http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+',data)
-
-#open output/results file...append because we are cool
-outfile = open('RESULTS.txt','a')
-for i in m:
-	print i
-	outfile.write(i)
-	outfile.write("\n") #may be needed. can always be removed.
-
-#close the file..or else
-outfile.close()
+patternFile = open('items.dat','r').read().splitlines()
+for pattern in patternFile:
+	m = re.findall("'"+pattern+"'",data)
+	if m:
+		#open output/results file...append because we are cool
+		outfile = open('RESULTS.txt','a')
+		print i
+		outfile.write(i)
+		outfile.write("\n") #may be needed. can always be removed.
+		
+		#close the file..or else
+		outfile.close()
+	else:
+		continue
 
 	

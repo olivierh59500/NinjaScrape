@@ -2,7 +2,11 @@
 
 import urllib2
 import re
-import readline #nice when you need to use arrow keys and backspace
+#not all systems have readline...if not, just pass and continue. 
+try:
+	import readline #nice when you need to use arrow keys and backspace
+except:
+	pass 
 import sys
 
 site = raw_input("Enter page: ")
@@ -29,7 +33,7 @@ for pattern in patternFile:
 		
 		#close the file..or else
 		outfile.close()
-	else:
+	else: #only need an else because m is boolean 
 		#Continue the loop if not a match so it can go on to the next sequence
 		continue
 
